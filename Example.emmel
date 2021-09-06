@@ -1,0 +1,123 @@
+@ Comments in Emmel are denoted by ampersands
+
+@ Variable Declarations
+
+v num := 3;
+v str := "hi";
+
+@ Printing 
+
+pr num;
+pr str;
+
+@ Number maniupulation
+
+pr num * 3;
+pr num + 3;
+pr num / 3;
+pr num - 3;
+pr -num;
+
+@ Strings are concatenated by a double ++
+
+v concat := str ++ " there";
+
+pr concat ++ " friend!";
+
+@ Null
+pr nl;
+
+@ Booleans
+
+pr T;
+pr F;
+pr !!!!!F;
+pr T == F;
+
+v example := 3 == 3;
+pr 1 == 2;
+
+pr T and F;
+pr F and F;
+
+pr example or (3==1);
+
+@ Conditionals
+
+if (T) {
+    pr T;
+} else {
+    pr F;
+}
+
+v counter := 0;
+while (counter < 10) {
+  pr counter;
+  counter := counter + 1;
+}
+
+for (v i := 20; i > 10; i := i - 1) {
+  pr i;
+}
+
+@ Functions
+
+fn foo() {
+    pr "called FOO";
+}
+
+fn pi() {
+    ret 3.14;
+}
+
+fn bar(a) {
+    foo();
+    pr "called" ++ a;
+}
+
+bar(" BAR");
+pr pi();
+
+@ Classes
+
+cls Scheme {
+    @ Constructor
+    con(a) {
+        this.bob := a;
+    }
+
+    printBob() {
+        pr this.bob;
+    }
+
+    incrementBob(a) {
+        this.bob := this.bob + a;
+    }
+
+    getBob() {
+        ret this.bob;
+    }
+}
+
+@ Inheritance
+cls SchemeSub < Scheme {
+    con(a) {
+        sup.con(a+1);
+        this.sub := a;
+    }
+
+    printSub() {
+        sup.printBob();
+        pr this.sub;
+    }
+
+}
+
+v instance := Scheme(5);
+instance.printBob();
+instance.incrementBob(3);
+instance.printBob();
+
+v subInstance := SchemeSub(10);
+subInstance.printBob();
+subInstance.printSub();
